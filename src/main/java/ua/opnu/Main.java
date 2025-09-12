@@ -15,9 +15,10 @@ public class Main {
      * icyHot(2, 120) → false
      */
     public boolean icyHot(int temp1, int temp2) {
-        // TODO: write method body
-        return false;
+        return (temp1 < 0 && temp2 > 100) || (temp1 > 100 && temp2 < 0);
     }
+
+
 
     /**
      * Given 2 int values, return true if either of them is in the range 10..20 inclusive.
@@ -27,8 +28,12 @@ public class Main {
      * in1020(8, 99) → false
      */
     public boolean in1020(int a, int b) {
-        // TODO: write method body
-        return false;
+
+        if ((a >= 10 && a <= 20) || (b >= 10 && b <= 20)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -40,11 +45,11 @@ public class Main {
      * hasTeen(20, 10, 13) → true
      */
     public boolean hasTeen(int a, int b, int c) {
-        // TODO: write method body
+        if ((a >= 13 && a <= 19) || (b >= 13 && b <= 19) || (c >= 13 && c <= 19)) {
+            return true;
+        }
         return false;
     }
-
-    // ======== Boolean expressions ========
 
     /**
      * The parameter weekday is true if it is a weekday, and the parameter vacation is true if we are on vacation.
@@ -54,10 +59,10 @@ public class Main {
      * sleepIn(true, false) → false
      * sleepIn(false, true) → true
      */
-    public boolean sleepIn(boolean weekday, boolean vacation) {
-        // TODO: write method body
-        return false;
+    public static boolean sleepIn(boolean weekday, boolean vacation) {
+        return !weekday || vacation;
     }
+
 
     /**
      * We have two monkeys, a and b, and the parameters aSmile and bSmile indicate if each is smiling.
@@ -68,9 +73,9 @@ public class Main {
      * monkeyTrouble(true, false) → false
      */
     public boolean monkeyTrouble(boolean aSmile, boolean bSmile) {
-        // TODO: write method body
-        return false;
+        return (aSmile && bSmile) || (!aSmile && !bSmile);
     }
+
 
     /**
      * Given 2 int values, return true if one is negative and one is positive. Except if the parameter "negative"
@@ -81,22 +86,29 @@ public class Main {
      * posNeg(-4, -5, true) → true
      */
     public boolean posNeg(int a, int b, boolean negative) {
-        // TODO: write method body
-        return false;
+        if (negative) {
+            return (a < 0 && b < 0);
+        } else {
+            return (a < 0 && b > 0) || (a > 0 && b < 0);
+        }
     }
-
-    // ======== Loops and Arrays ========
 
     /**
      * Given an array of ints, return the number of 9's in the array.
      * Example:
-     * arrayCount9([1, 2, 9]) → 1
-     * arrayCount9([1, 9, 9]) → 2
-     * arrayCount9([1, 9, 9, 3, 9]) → 3
+     * arrayCount9[1, 2, 9) → 1
+     * arrayCount9(1, 9, 9) ; → 2
+     * arrayCount9(1, 9, 9, 3, 9) → 3
      */
-    public int arrayCount9(int[] nums) {
-        // TODO: write method body
-        return 0;
+
+    public static int arrayCount9(int[] nums) {
+        int count = 0;
+        for (int num : nums) {
+            if (num == 9) {
+                count++;
+            }
+        }
+        return count;
     }
 
     /**
@@ -108,7 +120,12 @@ public class Main {
      * arrayFront9([1, 2, 3, 4, 5]) → false
      */
     public boolean arrayFront9(int[] nums) {
-        // TODO: write method body
+        int len = Math.min(nums.length, 4); // перевіряємо максимум 4 елементи
+        for (int i = 0; i < len; i++) {
+            if (nums[i] == 9) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -120,11 +137,13 @@ public class Main {
      * array123([1, 1, 2, 1, 2, 3]) → true
      */
     public boolean array123(int[] nums) {
-        // TODO: write method body
+        for (int i = 0; i < nums.length - 2; i++) {
+            if (nums[i] == 1 && nums[i + 1] == 2 && nums[i + 2] == 3) {
+                return true;
+            }
+        }
         return false;
     }
-
-    // ======== Strings ========
 
     /**
      * Given a string name, e.g. "Bob", return a greeting of the form "Hello Bob!".
@@ -134,8 +153,7 @@ public class Main {
      * helloName("X") → "Hello X!"
      */
     public String helloName(String name) {
-        // TODO: write method body
-        return null;
+        return "Hello " + name + "!";
     }
 
     /**
@@ -147,8 +165,13 @@ public class Main {
      * lastTwo("ab") → "ba"
      */
     public String lastTwo(String str) {
-        // TODO: write method body
-        return null;
+        if (str.length() < 2) {
+            return str; // якщо менше 2 символів — нічого міняти
+        }
+        String start = str.substring(0, str.length() - 2);
+        char secondLast = str.charAt(str.length() - 2);
+        char last = str.charAt(str.length() - 1);
+        return start + last + secondLast;
     }
 
     /**
@@ -159,9 +182,17 @@ public class Main {
      * middleTwo("Practice") → "ct"
      */
     public String middleTwo(String str) {
-        // TODO: write method body
-        return null;
+        int mid = str.length() / 2;
+        return str.substring(mid - 1, mid + 1);
     }
+
+
+// ======== Boolean expressions ========
+
+
+// ======== Loops and Arrays ========
+
+// ======== Strings ========
 
 
 }
